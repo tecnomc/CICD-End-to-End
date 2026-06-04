@@ -44,7 +44,7 @@ pipeline {
                 echo 'Build Docker Image' 
                 // Build the Docker image using the Dockerfile in the project 
                 // Tag the image with the current build number 
-                sh 'docker build -t devopshubg333/batch16d:${BUILD_NUMBER} -f Dockerfile .' 
+                sh 'docker build -t shilpa1819/cicd:${BUILD_NUMBER} -f Dockerfile .' 
             } 
         } 
 	
@@ -53,7 +53,7 @@ pipeline {
                 echo 'scanning Image' 
                
                
-                sh 'trivy image devopshubg333/batch16d:${BUILD_NUMBER}' 
+                sh 'trivy image shilpa1819/cicd:${BUILD_NUMBER}' 
             } 
         } 
 	
@@ -63,11 +63,11 @@ pipeline {
                 script { 
                  
                   	withCredentials([string(credentialsId: 'dockerhub', variable: 'dockerhub')]) {
-                         sh 'docker login -u devopshubg333 -p ${dockerhub}' 
+                         sh 'docker login -u shilpa1819 -p ${dockerhub}' 
 	
                       }
                     // Push the Docker image to Docker Hub 
-                    sh 'docker push devopshubg333/batch16d:${BUILD_NUMBER}' 
+                    sh 'docker push shilpa1819/cicd:${BUILD_NUMBER}' 
                     echo 'Pushed to Docker Hub' 
                 } 
             } 
@@ -77,8 +77,8 @@ pipeline {
 
 	stage('Update Deployment File') { 
             environment { 
-                GIT_REPO_NAME = "mindcircuit16d" 
-                GIT_USER_NAME = "devopstraininghub" 
+                GIT_REPO_NAME = "shilpa1819/cicd" 
+                GIT_USER_NAME = "shilpa1819" 
             } 
             steps { 
                 echo 'Update Deployment File' 
@@ -90,11 +90,11 @@ pipeline {
                 withCredentials([string(credentialsId: 'githubtoken', variable: 'githubtoken')]) { 
                     sh ''' 
                         # Configure git user 
-                        git config user.email "madhuxxxx123@gmail.com" 
-                        git config user.name "Madhu" 
+                        git config user.email "shilpa123@gmail.com" 
+                        git config user.name "Shilpa" 
 						
                         # Replace the tag in the deployment YAML file with the current buil  number 						
-                        sed -i "s/batch16d:.*/batch16d:${BUILD_NUMBER}/g" deploymentfiles/deployment.yaml 
+                        sed -i "s/cicd:.*/cicd:${BUILD_NUMBER}/g" deploymentfiles/deployment.yaml 
 						
 						
                         #Stage all changes 

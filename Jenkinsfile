@@ -77,8 +77,8 @@ pipeline {
 
 	stage('Update Deployment File') { 
             environment { 
-                GIT_REPO_NAME = "shilpa1819/cicd" 
-                GIT_USER_NAME = "shilpa1819" 
+                GIT_REPO_NAME = "CICD-End-to-End" 
+                GIT_USER_NAME = "tecnomc" 
             } 
             steps { 
                 echo 'Update Deployment File' 

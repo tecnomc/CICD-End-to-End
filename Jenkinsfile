@@ -12,7 +12,7 @@ pipeline {
             steps { 
                 echo 'Cloning GIT HUB Repo' 
                 // Clone the specified branch from the GitHub repository 
-                git branch: 'main', url: 'https://github.com/devopstraininghub/mindcircuit16d.git'
+                git branch: 'main', url: 'https://github.com/tecnomc/CICD-End-to-End.git'
             }   
         } 
 	

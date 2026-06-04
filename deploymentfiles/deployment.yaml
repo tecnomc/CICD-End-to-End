@@ -23,6 +23,6 @@ spec:
     spec:
       containers:
         - name: fb-pod-cont
-          image: shilpa1819/cicd:4
+          image: shilpa1819/cicd:5
           ports:
             - containerPort: 8080
